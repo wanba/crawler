@@ -13,6 +13,7 @@
     <url>http://qinziwanba.com</url>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.qinziwanba.crawler.CrawlerApplication</start-class>
     </properties>
 

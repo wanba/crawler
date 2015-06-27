@@ -42,7 +42,7 @@ public class SpiderManager {
         spiderMap.put("meituan", meituanSpider);
 
         // startAll spider
-        startAll();
+//        startAll();
     }
 
     private Spider initMeituanSpider() {
@@ -154,26 +154,26 @@ public class SpiderManager {
         WanbaLogger.info("init meituan directions={}", meituanDirections);
     }
 
-    /**
-     * 启动所有spider
-     */
-    public void startAll() {
-        WanbaLogger.info("{} startAll", this.getClass());
-        for (String splider : spiderMap.keySet()) {
-            WanbaLogger.info("start spider " + splider);
-            spiderMap.get(splider).start();
-        }
-    }
-
-    /**
-     * 停止所有spider
-     */
-    public void stopAll() {
-        WanbaLogger.info("{} stopAll", this.getClass());
-        for (String splider : spiderMap.keySet()) {
-            WanbaLogger.info("start spider " + splider);
-            spiderMap.get(splider).stop();
-        }
-    }
+//    /**
+//     * 启动所有spider
+//     */
+//    public void startAll() {
+//        WanbaLogger.info("{} startAll", this.getClass());
+//        for (String splider : spiderMap.keySet()) {
+//            WanbaLogger.info("start spider " + splider);
+//            spiderMap.get(splider).start();
+//        }
+//    }
+//
+//    /**
+//     * 停止所有spider
+//     */
+//    public void stopAll() {
+//        WanbaLogger.info("{} stopAll", this.getClass());
+//        for (String splider : spiderMap.keySet()) {
+//            WanbaLogger.info("start spider " + splider);
+//            spiderMap.get(splider).stop();
+//        }
+//    }
 
 }
