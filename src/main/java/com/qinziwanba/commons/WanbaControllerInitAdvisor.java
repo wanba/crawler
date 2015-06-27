@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 @ControllerAdvice
 public class WanbaControllerInitAdvisor {
     @InitBinder
-    public void initBinder ( WebDataBinder binder )
-    {
+    public void initBinder(WebDataBinder binder) {
         StringTrimmerEditor stringtrimmer = new StringTrimmerEditor(true);
         binder.registerCustomEditor(String.class, stringtrimmer);
     }

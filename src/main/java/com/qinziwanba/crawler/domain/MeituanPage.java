@@ -88,7 +88,8 @@ public class MeituanPage {
     }
 
 
-    public MeituanPage() {}
+    public MeituanPage() {
+    }
 
     public MeituanPage(String name, String address, String tel, String category, String rating, String consumeCount, String ratingCount) {
         this.name = name;

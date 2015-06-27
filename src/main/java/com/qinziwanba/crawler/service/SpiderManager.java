@@ -19,7 +19,7 @@ import java.util.Map;
 @Component
 public class SpiderManager {
 
-    private Map<String,Spider> spiderMap = new HashMap<String, Spider>();
+    private Map<String, Spider> spiderMap = new HashMap<String, Spider>();
 
     private List<String> meituanCategraies = new ArrayList<String>();
     private List<String> meituanDirections = new ArrayList<String>();
@@ -39,7 +39,7 @@ public class SpiderManager {
         Spider meituanSpider = initMeituanSpider();
 
         // add to map
-        spiderMap.put("meituan",meituanSpider);
+        spiderMap.put("meituan", meituanSpider);
 
         // startAll spider
         startAll();
@@ -68,26 +68,26 @@ public class SpiderManager {
 
     /**
      * 足疗按摩
-     水上世界
-     亲子游玩
-     温泉
-     洗浴/汗蒸
-     滑雪
-     游泳/水上乐园
-     运动健身
-     咖啡/酒吧
-     桌游/电玩
-     景点郊游
-     主题公园/游乐园
-     儿童乐园
-     采摘/农家乐
-     演出/赛事/展览
-     DIY手工
-     真人CS
-     私人影院
-     4D/5D电影
-     密室逃脱
-     其他娱乐
+     * 水上世界
+     * 亲子游玩
+     * 温泉
+     * 洗浴/汗蒸
+     * 滑雪
+     * 游泳/水上乐园
+     * 运动健身
+     * 咖啡/酒吧
+     * 桌游/电玩
+     * 景点郊游
+     * 主题公园/游乐园
+     * 儿童乐园
+     * 采摘/农家乐
+     * 演出/赛事/展览
+     * DIY手工
+     * 真人CS
+     * 私人影院
+     * 4D/5D电影
+     * 密室逃脱
+     * 其他娱乐
      */
     private void initMeituanCategraies() {
         meituanCategraies.add("shuishijie");
@@ -112,26 +112,26 @@ public class SpiderManager {
 //        meituanCategraies.add("mishitaotuo");
 //        meituanCategraies.add("qitaxiuxian");
 
-        WanbaLogger.info("init meituan categraies={}",meituanCategraies);
+        WanbaLogger.info("init meituan categraies={}", meituanCategraies);
     }
 
     /**
      * 朝阳区
-     海淀区
-     丰台区
-     西城区
-     东城区
-     昌平区
-     石景山区
-     通州区
-     大兴区
-     顺义区
-     房山区
-     密云县
-     怀柔区
-     延庆县
-     平谷区
-     门头沟
+     * 海淀区
+     * 丰台区
+     * 西城区
+     * 东城区
+     * 昌平区
+     * 石景山区
+     * 通州区
+     * 大兴区
+     * 顺义区
+     * 房山区
+     * 密云县
+     * 怀柔区
+     * 延庆县
+     * 平谷区
+     * 门头沟
      */
     private void initMeituanDirections() {
         meituanDirections.add("chaoyangqu");
@@ -158,7 +158,7 @@ public class SpiderManager {
      * 启动所有spider
      */
     public void startAll() {
-        WanbaLogger.info("{} startAll",this.getClass());
+        WanbaLogger.info("{} startAll", this.getClass());
         for (String splider : spiderMap.keySet()) {
             WanbaLogger.info("start spider " + splider);
             spiderMap.get(splider).start();
@@ -169,7 +169,7 @@ public class SpiderManager {
      * 停止所有spider
      */
     public void stopAll() {
-        WanbaLogger.info("{} stopAll",this.getClass());
+        WanbaLogger.info("{} stopAll", this.getClass());
         for (String splider : spiderMap.keySet()) {
             WanbaLogger.info("start spider " + splider);
             spiderMap.get(splider).stop();

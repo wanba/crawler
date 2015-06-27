@@ -3,7 +3,7 @@ package com.qinziwanba.commons;
 /**
  * Created by wangzhiguo on 15/6/27.
  */
-public class WanbaException extends RuntimeException{
+public class WanbaException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
     protected WanbaErrorCode wanbaErrorCode;
@@ -42,5 +42,5 @@ public class WanbaException extends RuntimeException{
     public String toString() {
         return "WanbaException{wanbaErrorCode=" + this.wanbaErrorCode + ", details=\'" + this.details + '\'' + ", errorMessage=\'" + this.getMessage() + "\'}";
     }
-    
+
 }

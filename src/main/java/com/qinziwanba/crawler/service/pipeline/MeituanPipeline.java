@@ -33,7 +33,7 @@ public class MeituanPipeline implements Pipeline {
         String ratingCount = resultItems.get(MeituanPageProcessor.MEITUAN_RATING_COUNT);
 
         // write into mysql
-        MeituanPage meituanPage = meituanDao.insert(name,address,tel,category,rating,consumeCount,ratingCount);
+        MeituanPage meituanPage = meituanDao.insert(name, address, tel, category, rating, consumeCount, ratingCount);
         WanbaLogger.info("get page result, page={}", meituanPage);
     }
 }

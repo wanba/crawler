@@ -28,7 +28,7 @@ public class WanbaLogger {
 
     private static void requestTrace(String traceId, WanbaLogger.Endpoint endpoint, String category, String message, Object... args) {
         String pattern = String.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL|%2$s|%3$s|%4$s|%5$s", new Object[]{Long.valueOf(System.currentTimeMillis()), traceId, endpoint.name(), category, message});
-        if(args.length > 0) {
+        if (args.length > 0) {
             traceLogger.info(pattern, args);
         } else {
             traceLogger.info(pattern);
@@ -42,11 +42,11 @@ public class WanbaLogger {
 
     public static String requestTrace(String uid, Date requestTime, String traceId, WanbaLogger.Endpoint endpoint, WanbaLogger.LogType logType, String inputParam, String outputParam, String tid, String callUrl, String callMethod, long elapsedTime, WanbaLogger.LogStatus status, String callerIp, String localIp, Object... args) {
         String pattern = String.format("%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL|%2$s|%3$s|%4$s|%5$s|%6$s|%7$s|%8$s|%9$s|%10$s|%11$s|%12$s|%13$s|%14$s|", new Object[]{requestTime, traceId, endpoint.name(), logType, tid, Long.valueOf(elapsedTime), status, callUrl, callMethod, callerIp, localIp, uid, parseShuXian(inputParam), parseShuXian(outputParam)});
-        if(args.length > 0) {
+        if (args.length > 0) {
             Object[] arr$ = args;
             int len$ = args.length;
 
-            for(int i$ = 0; i$ < len$; ++i$) {
+            for (int i$ = 0; i$ < len$; ++i$) {
                 Object arg = arr$[i$];
                 pattern = pattern.concat(String.valueOf(arg)).concat("|");
             }
@@ -57,7 +57,7 @@ public class WanbaLogger {
     }
 
     private static String parseShuXian(String sourceStr) {
-        return sourceStr == null?"null":sourceStr.replaceAll("\\|", "#");
+        return sourceStr == null ? "null" : sourceStr.replaceAll("\\|", "#");
     }
 
     public static void debug(String format, Object... arguments) {

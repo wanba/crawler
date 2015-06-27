@@ -24,7 +24,7 @@ public class WanbaExceptionAdvisor {
         if (ex instanceof WanbaException) {
             wanbaResult.setErrorCode(String.valueOf(((WanbaException) ex).getWanbaErrorCode().getErrorCode()));
             wanbaResult.setMessage(ex.getMessage());
-        }else {
+        } else {
             wanbaResult.setErrorCode(WanbaErrorCode.WANBA_UNKNOWN_ERROR.getErrorCodeString());
             wanbaResult.setMessage(ex.getMessage());
         }

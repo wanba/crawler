@@ -21,21 +21,23 @@ import java.util.Date;
 public class ControllerAspect {
 
     @Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
-    public void requestMapping() {}
+    public void requestMapping() {
+    }
 
     @Pointcut("execution(public * com.qinziwanba.crawler.controller.*Controller.*(..))")
-    public void methodPointcut() {}
+    public void methodPointcut() {
+    }
 
 
     @Around("requestMapping() && methodPointcut()")
     public Object aroundInvock(ProceedingJoinPoint joinPoint) throws Throwable {
 
         // 只会拦截 Controller 最后一个参数是 HttpServletRequest 的 接口调用
-        Object requestObj = null ;
-        if (joinPoint.getArgs().length>=1) {
+        Object requestObj = null;
+        if (joinPoint.getArgs().length >= 1) {
             requestObj = joinPoint.getArgs()[joinPoint.getArgs().length - 1];
         }
-        if (requestObj==null || !(requestObj instanceof HttpServletRequest)) {
+        if (requestObj == null || !(requestObj instanceof HttpServletRequest)) {
             return joinPoint.proceed();
         }
 
@@ -67,10 +69,10 @@ public class ControllerAspect {
             String outParam = null;
             boolean bizSuccess = false;
             // 判断是否成功，通过业务标志和异常判断
-            if (result!=null){
+            if (result != null) {
                 if (result instanceof WanbaException) {
                     bizSuccess = ((WanbaResult) result).isSuccess();
-                    outParam = ((WanbaResult) result ).toString(); 
+                    outParam = ((WanbaResult) result).toString();
                 } else {
                     outParam = result.toString();
                 }
@@ -79,7 +81,7 @@ public class ControllerAspect {
             // TODO:超时处理？
 
             // 打印日志
-            WanbaLogger.requestTrace(null,startTime, traceId, WanbaLogger.Endpoint.CRAWLER, WanbaLogger.LogType.HTTP_SERVICE, inputParam, outParam, null, url, callMethod, eTime, logStatus, callIp, localIp);
+            WanbaLogger.requestTrace(null, startTime, traceId, WanbaLogger.Endpoint.CRAWLER, WanbaLogger.LogType.HTTP_SERVICE, inputParam, outParam, null, url, callMethod, eTime, logStatus, callIp, localIp);
         } catch (Exception e) {
             // 错误信息中加个traceid便于跟踪
             WanbaLogger.error("TraceAopError,traceId:".concat(String.valueOf(traceId)), e);
@@ -94,10 +96,10 @@ public class ControllerAspect {
     // 拼接入参参数
     private String getInputParam(Object[] args) {
         StringBuilder sb = new StringBuilder();
-        for (Object arg: args) {
-            if (arg!=null) {
+        for (Object arg : args) {
+            if (arg != null) {
                 sb.append(arg.toString());
-            }else {
+            } else {
                 sb.append("null");
             }
         }

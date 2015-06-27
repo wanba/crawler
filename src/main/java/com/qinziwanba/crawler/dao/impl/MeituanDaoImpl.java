@@ -5,7 +5,6 @@ import com.qinziwanba.crawler.domain.MeituanPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 
@@ -32,7 +31,7 @@ public class MeituanDaoImpl implements MeituanDao {
 
         jdbcTemplate.update(SQL_MEITUAN_INSERT, name, address, tel, category, rating, consumeCount, ratingCount, cur);
 
-        MeituanPage page = new MeituanPage(name,address,tel,category,rating,consumeCount,ratingCount);
+        MeituanPage page = new MeituanPage(name, address, tel, category, rating, consumeCount, ratingCount);
         page.setUpdatedAt(cur);
         return page;
     }

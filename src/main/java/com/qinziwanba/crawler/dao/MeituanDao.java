@@ -7,6 +7,6 @@ import com.qinziwanba.crawler.domain.MeituanPage;
  */
 public interface MeituanDao {
 
-    public MeituanPage insert(String name,String address,String tel,String category,String rating,
-                       String consumeCount,String ratingCount);
+    public MeituanPage insert(String name, String address, String tel, String category, String rating,
+                              String consumeCount, String ratingCount);
 }

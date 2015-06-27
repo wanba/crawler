@@ -39,7 +39,7 @@
 
 
     <logger name="trace" level="DEBUG" additivity="true">
-        <appender-ref ref="TRACE" />
+        <appender-ref ref="TRACE"/>
     </logger>
 
     <root level="DEBUG">

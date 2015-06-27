@@ -1,15 +1,11 @@
 package com.qinziwanba.crawler;
 
 import com.qinziwanba.commons.AppStats;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.*;
 
-import javax.sql.DataSource;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
