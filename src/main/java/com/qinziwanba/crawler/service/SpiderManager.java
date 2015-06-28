@@ -25,6 +25,9 @@ public class SpiderManager {
     @Resource(name = "dianipingPageScheduler")
     private PageScheduler dianpingPageScheduler;
 
+    @Resource(name = "amunionPageScheduler")
+    private PageScheduler amunionPageScheduler;
+
     @PostConstruct
     public void init() {
 
@@ -35,6 +38,10 @@ public class SpiderManager {
         // init dianping
         Spider dianpingSpider = dianpingPageScheduler.getSpider();
         spiderMap.put("dianping",dianpingSpider);
+
+        // init amunion
+        Spider amunionSpider = amunionPageScheduler.getSpider();
+        spiderMap.put("amunion", amunionSpider);
 
         // startAll spider
 //        startAll();

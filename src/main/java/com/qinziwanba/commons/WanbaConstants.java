@@ -18,4 +18,5 @@ public class WanbaConstants {
     static public final String PAGE_CONSUME_COUNT = "consume_count";
     static public final String PAGE_AVG_PRICE = "avg_price";
     static public final String PAGE_OPENING_TIME = "opening_time";
+    static public final String PAGE_SQUARE = "square";
 }
