@@ -1,11 +1,7 @@
 package com.qinziwanba.crawler.dao;
 
 import com.qinziwanba.crawler.domain.MeituanPage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import javax.sql.DataSource;
 
 /**
  * Created by wangzhiguo on 15/6/28.

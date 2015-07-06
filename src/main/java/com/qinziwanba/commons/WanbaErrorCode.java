@@ -6,7 +6,10 @@ package com.qinziwanba.commons;
 public enum WanbaErrorCode {
 
     WANBA_SUCCESS(10000, "操作成功"),
-    WANBA_UNKNOWN_ERROR(10001, "未知异常");
+    WANBA_UNKNOWN_ERROR(10001, "未知异常"),
+    WANBA_PARAM_ISBLACK(10002, "参数不能为空"),
+    WANBA_OLD_PASSWORD_INVALID(10003, "原始密码不正确"),
+    WANBA_PASSWORD_INVALID(10004, "密码不正确");
 
     private int errorCode;
     private String message;

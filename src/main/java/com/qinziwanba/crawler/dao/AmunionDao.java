@@ -1,7 +1,6 @@
 package com.qinziwanba.crawler.dao;
 
 import com.qinziwanba.crawler.domain.AmunionPage;
-import com.qinziwanba.crawler.domain.MeituanPage;
 
 /**
  * Created by wangzhiguo on 15/6/28.

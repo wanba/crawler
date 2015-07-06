@@ -1,7 +1,6 @@
 package com.qinziwanba.crawler.dao;
 
 import com.qinziwanba.crawler.domain.DianpingPage;
-import com.qinziwanba.crawler.domain.MeituanPage;
 import org.springframework.stereotype.Repository;
 
 /**
