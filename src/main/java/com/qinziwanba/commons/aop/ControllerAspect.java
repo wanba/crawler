@@ -1,4 +1,4 @@
-package com.qinziwanba.crawler.aop;
+package com.qinziwanba.commons.aop;
 
 import com.qinziwanba.commons.WanbaConstants;
 import com.qinziwanba.commons.WanbaException;
@@ -25,12 +25,24 @@ public class ControllerAspect {
     }
 
     @Pointcut("execution(public * com.qinziwanba.crawler.controller.*Controller.*(..))")
-    public void methodPointcut() {
+    public void crawlerPointcut() {
     }
 
+    @Pointcut("execution(public * com.qinziwanba.crawler.controller.*Controller.*(..))")
+    public void apiPointcut() {
+    }
 
-    @Around("requestMapping() && methodPointcut()")
-    public Object aroundInvock(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("requestMapping() && crawlerPointcut()")
+    public Object aroundCrawlerInvock(ProceedingJoinPoint joinPoint) throws Throwable {
+        return aroundMethod(joinPoint);
+    }
+
+    @Around("requestMapping() && apiPointcut()")
+    public Object aroundApiInvock(ProceedingJoinPoint joinPoint) throws Throwable {
+        return aroundMethod(joinPoint);
+    }
+
+    private Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
 
         // 只会拦截 Controller 最后一个参数是 HttpServletRequest 的 接口调用
         Object requestObj = null;
