@@ -1,4 +1,4 @@
-package com.qinziwanba.crawler;
+package com.qinziwanba.api;
 
 import com.qinziwanba.commons.AppStats;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,9 +17,9 @@ import java.util.Map;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@PropertySources({@PropertySource("classpath:crawler.properties")
+@PropertySources({@PropertySource("classpath:api.properties")
 })
-public class CrawlerApplication {
+public class ApiApplication {
 
     @Value("${server.port}")
     private String port;
@@ -37,7 +37,7 @@ public class CrawlerApplication {
 
     public static void main(String[] args) {
         System.setProperty("java.net.preferIPv4Stack", "true");
-        SpringApplication app = new SpringApplication(CrawlerApplication.class);
+        SpringApplication app = new SpringApplication(ApiApplication.class);
         app.setShowBanner(false);
         app.run(args);
     }

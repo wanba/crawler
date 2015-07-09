@@ -40,7 +40,7 @@ public class NoteController {
         contents.add(content);
         List<Note.Section> sections = noteService.addSection(note.getNid(), contents);
 
-        note.addSections(sections);
+        note.setSectionList(sections);
         return note;
     }
 

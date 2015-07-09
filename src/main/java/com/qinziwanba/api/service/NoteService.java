@@ -29,7 +29,6 @@ public class NoteService {
         return noteDao.addSections(nid, contents);
     }
 
-
     public void updateNote(String nid, String title, String address) {
         noteDao.updateNote(nid, title, address);
     }

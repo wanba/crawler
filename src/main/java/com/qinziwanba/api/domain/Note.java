@@ -69,14 +69,17 @@ public class Note {
         this.updatedAt = updatedAt;
     }
 
-    public void addSection(Section section) {
-        sectionList.add(section);
+    public List<Section> getSectionList() {
+        return sectionList;
     }
 
-    public void addSections(List<Section> sections) {
-        sectionList.addAll(sections);
+    public void setSectionList(List<Section> sectionList) {
+        this.sectionList = sectionList;
     }
 
+    public Note() {
+
+    }
     public Note(String nid, String title, String address) {
         this.nid = nid;
         this.title = title;

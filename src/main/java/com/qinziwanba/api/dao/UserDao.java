@@ -5,6 +5,8 @@ import com.qinziwanba.commons.WanbaErrorCode;
 import com.qinziwanba.commons.WanbaException;
 import com.qinziwanba.commons.WanbaLogger;
 import com.qinziwanba.crawler.dao.AbstractDao;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,7 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDao extends AbstractDao {
 
-    private final String SQL_USER_INSERT = "insert into user (`uid`, `name` `email`, `phone`, `city`, `gender`, `updated_at`) values (?,?,?,?,?,?,?);";
+    private final String SQL_USER_INSERT = "insert into user (`uid`, `name`, `phone`, `gender`, `updated_at`) values (?,?,?,?,?)" +
+            " on duplicate key update `name` = ?, `phone` = ?, `gender` = ?, `updated_at` = ?;";
 
     private final String SQL_USER_SELECT = "select `uid`, `name`, `password`, `email`, `phone`, `city`, `gender`, `updated_at` as updatedAt from user where uid=? ;";
 
@@ -28,13 +31,16 @@ public class UserDao extends AbstractDao {
      */
     public User getUser(String uid) {
         WanbaLogger.debug("{} getUser , uid={}",this.getClass(), uid);
-        return jdbcTemplate.queryForObject(SQL_USER_SELECT,new Object[] { uid },User.class);
+
+        RowMapper<User> rm = ParameterizedBeanPropertyRowMapper.newInstance(User.class);
+        return jdbcTemplate.queryForObject(SQL_USER_SELECT, new Object[] {uid}, rm);
     }
 
     public User getUserByPhone(String phone) {
         WanbaLogger.debug("{} get user by phone, phone={}", this.getClass(), phone);
 
-        return jdbcTemplate.queryForObject(SQL_USER_SELECT_BY_PHONE, new Object[] { phone }, User.class);
+        RowMapper<User> rm = ParameterizedBeanPropertyRowMapper.newInstance(User.class);
+        return (User) jdbcTemplate.queryForObject(SQL_USER_SELECT_BY_PHONE, new Object[] {phone}, rm);
     }
 
     /**
@@ -50,7 +56,7 @@ public class UserDao extends AbstractDao {
                 this.getClass(), uid, name, phone, gender);
 
         Long cur = System.currentTimeMillis();
-        jdbcTemplate.update(SQL_USER_INSERT, uid, name, phone, gender,cur);
+        jdbcTemplate.update(SQL_USER_INSERT, uid, name, phone, gender,cur, name, phone, gender, cur);
 
         User user = new User(uid,name,phone,gender);
         user.setUpdatedAt(cur);
@@ -59,9 +65,9 @@ public class UserDao extends AbstractDao {
     }
 
     public void resetPassword(String uid, String password) {
-        WanbaLogger.debug("{} update password, password={}", this.getClass(), password);
+        WanbaLogger.debug("{} update password, uid={} password={}", this.getClass(),uid, password);
 
-        jdbcTemplate.update(SQL_USER_UPDATE_PASSWORD, new Object[]{password});
+        jdbcTemplate.update(SQL_USER_UPDATE_PASSWORD, new Object[]{password, uid});
     }
 
     public void updatePassword(String uid, String oldPassword, String newPassword) {
@@ -69,7 +75,7 @@ public class UserDao extends AbstractDao {
 
         User user = getUser(uid);
         if (oldPassword.equalsIgnoreCase(user.getPassword())) {
-            jdbcTemplate.update(SQL_USER_UPDATE_PASSWORD, new Object[]{ newPassword });
+            jdbcTemplate.update(SQL_USER_UPDATE_PASSWORD, new Object[]{newPassword, uid });
         }else {
             throw new WanbaException(WanbaErrorCode.WANBA_OLD_PASSWORD_INVALID);
         }
